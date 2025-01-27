@@ -15,7 +15,6 @@ fn main() {
                 _stream.read(&mut request_api_version).unwrap();
                 let mut correlation_id: [u8; 4] = [0, 0, 0, 0];
                 _stream.read(&mut correlation_id).unwrap();
-
                 _stream.write(&message_size).unwrap();
                 _stream.write(&correlation_id).unwrap();
             }
