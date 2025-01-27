@@ -16,6 +16,7 @@ fn main() {
                 let mut correlation_id: [u8; 4] = [0, 0, 0, 0];
                 _stream.read(&mut correlation_id).unwrap();
 
+                _stream.write(&message_size).unwrap();
                 _stream.write(&correlation_id).unwrap();
             }
             Err(e) => {
