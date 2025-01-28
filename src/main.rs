@@ -15,6 +15,10 @@ fn main() {
                 _stream.read(&mut request_api_version).unwrap();
                 let mut correlation_id: [u8; 4] = [0, 0, 0, 0];
                 _stream.read(&mut correlation_id).unwrap();
+                let size = u32::from_be_bytes(message_size) as usize;
+                let mut message = vec![0; size];
+                _stream.read(&mut message).unwrap();
+
                 _stream.write(&message_size).unwrap();
                 _stream.write(&correlation_id).unwrap();
             }
